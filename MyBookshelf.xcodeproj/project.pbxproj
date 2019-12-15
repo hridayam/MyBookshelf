@@ -12,6 +12,8 @@
 		D4BB9C9A23A4E962009C5573 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB9C9923A4E962009C5573 /* Book.swift */; };
 		D4BB9CA123A6052B009C5573 /* NewBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB9CA023A6052B009C5573 /* NewBooksViewController.swift */; };
 		D4BB9CA323A6123B009C5573 /* SearchBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB9CA223A6123A009C5573 /* SearchBooksViewController.swift */; };
+		D4BB9CA623A62101009C5573 /* NewBooksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB9CA523A62101009C5573 /* NewBooksViewModel.swift */; };
+		D4BB9CA923A632B8009C5573 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB9CA823A632B8009C5573 /* LoadingIndicatorView.swift */; };
 		D4BD673823A4D4D4009A7CBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD673723A4D4D4009A7CBB /* AppDelegate.swift */; };
 		D4BD673A23A4D4D4009A7CBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD673923A4D4D4009A7CBB /* SceneDelegate.swift */; };
 		D4BD673F23A4D4D4009A7CBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4BD673D23A4D4D4009A7CBB /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 		D4BB9C9923A4E962009C5573 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		D4BB9CA023A6052B009C5573 /* NewBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBooksViewController.swift; sourceTree = "<group>"; };
 		D4BB9CA223A6123A009C5573 /* SearchBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBooksViewController.swift; sourceTree = "<group>"; };
+		D4BB9CA523A62101009C5573 /* NewBooksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBooksViewModel.swift; sourceTree = "<group>"; };
+		D4BB9CA823A632B8009C5573 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		D4BD673423A4D4D4009A7CBB /* My Bookshelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Bookshelf.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4BD673723A4D4D4009A7CBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4BD673923A4D4D4009A7CBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 		D4BB9C9823A4E941009C5573 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				D4BB9CA523A62101009C5573 /* NewBooksViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -138,6 +143,21 @@
 			path = StoryBoards;
 			sourceTree = "<group>";
 		};
+		D4BB9CA423A61B56009C5573 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D4BB9CA723A63290009C5573 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D4BB9CA823A632B8009C5573 /* LoadingIndicatorView.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		D4BD672B23A4D4D4009A7CBB = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +181,8 @@
 		D4BD673623A4D4D4009A7CBB /* MyBookshelf */ = {
 			isa = PBXGroup;
 			children = (
+				D4BB9CA723A63290009C5573 /* Helpers */,
+				D4BB9CA423A61B56009C5573 /* Extensions */,
 				D4BB9C9D23A60477009C5573 /* StoryBoards */,
 				D4BB9C9C23A60440009C5573 /* Resources */,
 				D4BB9C9B23A603E3009C5573 /* ViewControllers */,
@@ -329,7 +351,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4BB9CA323A6123B009C5573 /* SearchBooksViewController.swift in Sources */,
+				D4BB9CA623A62101009C5573 /* NewBooksViewModel.swift in Sources */,
 				D4BD673823A4D4D4009A7CBB /* AppDelegate.swift in Sources */,
+				D4BB9CA923A632B8009C5573 /* LoadingIndicatorView.swift in Sources */,
 				D4BD673A23A4D4D4009A7CBB /* SceneDelegate.swift in Sources */,
 				D4BB9C9A23A4E962009C5573 /* Book.swift in Sources */,
 				D4BB9CA123A6052B009C5573 /* NewBooksViewController.swift in Sources */,

@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search-->
+        <!--Search View Controller-->
         <scene sceneID="MhD-3d-Ga7">
             <objects>
-                <viewController id="Za0-dS-CsC" customClass="SearchBooksViewController" customModule="My_Bookshelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Za0-dS-CsC" userLabel="Search View Controller" customClass="SearchBooksViewController" customModule="My_Bookshelf" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RJD-aZ-Fsw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,6 +22,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yu6-5N-u6J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3065" y="457"/>
+        </scene>
+        <!--New Books Navigation Controller-->
+        <scene sceneID="nMO-t7-2WN">
+            <objects>
+                <navigationController title="New Books Navigation Controller" id="2r6-6F-Lx1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="New Books" image="book" catalog="system" id="zGC-A8-bdS"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="EL9-es-nLf">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="T7P-qC-0fb" kind="relationship" relationship="rootViewController" id="7CJ-aU-1kJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4TO-Ic-bsJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1967" y="-216"/>
         </scene>
         <!--Search Navigarion Controller-->
         <scene sceneID="ses-ei-NVB">
@@ -40,21 +57,36 @@
             </objects>
             <point key="canvasLocation" x="1967" y="457"/>
         </scene>
-        <!--New Books-->
+        <!--New Books View Controller-->
         <scene sceneID="fcW-88-TOj">
             <objects>
-                <viewController title="New Books" id="T7P-qC-0fb" customClass="NewBooksViewController" customModule="My_Bookshelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="T7P-qC-0fb" userLabel="New Books View Controller" customClass="NewBooksViewController" customModule="My_Bookshelf" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AYO-aY-0oL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9w-C3-4tQ">
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="AyE-E7-5ou" firstAttribute="bottom" secondItem="d9w-C3-4tQ" secondAttribute="bottom" id="197-yQ-W7d"/>
+                            <constraint firstItem="d9w-C3-4tQ" firstAttribute="top" secondItem="AyE-E7-5ou" secondAttribute="top" id="3ZW-bU-xKf"/>
+                            <constraint firstItem="AyE-E7-5ou" firstAttribute="trailing" secondItem="d9w-C3-4tQ" secondAttribute="trailing" id="DyO-lC-a7x"/>
+                            <constraint firstItem="d9w-C3-4tQ" firstAttribute="leading" secondItem="AyE-E7-5ou" secondAttribute="leading" id="t4T-0G-4GL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="AyE-E7-5ou"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="New Books" image="book" catalog="system" id="nfI-gy-Jx8"/>
+                    <navigationItem key="navigationItem" title="New Books" id="Ul8-Mc-W1J"/>
+                    <connections>
+                        <outlet property="contentView" destination="d9w-C3-4tQ" id="8oj-6R-yc6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIu-wf-pwA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968" y="-216"/>
+            <point key="canvasLocation" x="3064" y="-216"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="99X-1W-Etu">
@@ -66,7 +98,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="T7P-qC-0fb" kind="relationship" relationship="viewControllers" id="Tso-iU-Uyr"/>
+                        <segue destination="2r6-6F-Lx1" kind="relationship" relationship="viewControllers" id="rhc-Qb-AdV"/>
                         <segue destination="d2r-cd-lC0" kind="relationship" relationship="viewControllers" id="DXB-iq-pbZ"/>
                     </connections>
                 </tabBarController>

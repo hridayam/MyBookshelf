@@ -9,22 +9,43 @@
 import UIKit
 
 class NewBooksViewController: UIViewController {
+    
+    let viewModel: NewBooksViewModel = NewBooksViewModel()
+    @IBOutlet weak var contentView: UIView!
+    
+    lazy var loadingIndicatorView: LoadingIndicatorView = {
+        let view = LoadingIndicatorView()
+        
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.contentView.addSubview(self.loadingIndicatorView)
+        NSLayoutConstraint.activate([
+            self.loadingIndicatorView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            self.loadingIndicatorView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            self.loadingIndicatorView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            self.loadingIndicatorView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
+        ])
+        
+        setupSubscriptions()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setupSubscriptions() {
+        viewModel.inProgress.subscribePast(with: self) { (inProgress) in
+            print(inProgress)
+            if inProgress {
+                self.loadingIndicatorView.isLoading = true
+            } else {
+                self.loadingIndicatorView.isLoading = false
+            }
+        }
     }
-    */
-
+    
+    
 }
