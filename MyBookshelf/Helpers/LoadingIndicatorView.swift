@@ -34,6 +34,7 @@ class LoadingIndicatorView: UIView {
     private lazy var blurEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.prominent)
         let view = UIVisualEffectView(effect: blurEffect)
+        view.alpha = 0.5
         
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         

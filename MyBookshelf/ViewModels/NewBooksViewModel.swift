@@ -8,9 +8,10 @@
 
 import Foundation
 import Signals
+import Alamofire
 
 class NewBooksViewModel {
-    let books = Signal<(data: [Book], error: Error)>(retainLastData: true)
+    let books = Signal<(data: [Book], error: Error?)>(retainLastData: true)
     let inProgress: Signal<Bool> = Signal<Bool>(retainLastData: true)
     
     var progress = true
@@ -21,10 +22,22 @@ class NewBooksViewModel {
     
     init() {
         self.inProgress.fire(progress)
-        
-        var timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {[unowned self] _ in
-            self.progress = !self.progress
-            self.inProgress.fire(self.progress)
+        Alamofire.request(BookRequestManager.newBooks).responseJSON { [weak self] response in
+            guard let self = self else { return }
+            
+            print(response)
+            self.inProgress.fire(false)
+            guard let data = response.data else {
+                print("no response from server")
+                return
+            }
+            do {
+                let newBooks: NewBooks = try JSONDecoder().decode(NewBooks.self, from: data)
+                print(newBooks)
+                self.books.fire((newBooks.books, nil))
+            } catch {
+                print(error)
+            }
         }
     }
 }

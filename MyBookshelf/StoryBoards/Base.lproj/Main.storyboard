@@ -67,7 +67,26 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9w-C3-4tQ">
                                 <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YP9-E1-vV9">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="673"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ToB-zJ-Z68">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="YP9-E1-vV9" secondAttribute="bottom" id="76t-dP-Fku"/>
+                                    <constraint firstItem="YP9-E1-vV9" firstAttribute="top" secondItem="d9w-C3-4tQ" secondAttribute="top" id="OmC-Hm-vWi"/>
+                                    <constraint firstItem="YP9-E1-vV9" firstAttribute="leading" secondItem="d9w-C3-4tQ" secondAttribute="leading" id="Uk9-XQ-TxE"/>
+                                    <constraint firstAttribute="trailing" secondItem="YP9-E1-vV9" secondAttribute="trailing" id="eja-fk-DnP"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -81,6 +100,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="New Books" id="Ul8-Mc-W1J"/>
                     <connections>
+                        <outlet property="collectionView" destination="YP9-E1-vV9" id="bdi-tB-Obs"/>
                         <outlet property="contentView" destination="d9w-C3-4tQ" id="8oj-6R-yc6"/>
                     </connections>
                 </viewController>
