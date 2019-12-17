@@ -11,6 +11,7 @@
 		D422760723A728E700DDC49F /* BookCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D422760523A728E700DDC49F /* BookCollectionViewCell.xib */; };
 		D422760923A764FC00DDC49F /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D422760823A764FC00DDC49F /* UIViewController+extension.swift */; };
 		D422760B23A770E400DDC49F /* NewBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D422760A23A770E400DDC49F /* NewBooks.swift */; };
+		D422761023A8BBF700DDC49F /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = D422760F23A8BBF700DDC49F /* AlamofireImage */; };
 		D4BB9C9223A4E39C009C5573 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D4BB9C9123A4E39C009C5573 /* Alamofire */; };
 		D4BB9C9523A4E3D4009C5573 /* Signals in Frameworks */ = {isa = PBXBuildFile; productRef = D4BB9C9423A4E3D4009C5573 /* Signals */; };
 		D4BB9C9A23A4E962009C5573 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB9C9923A4E962009C5573 /* Book.swift */; };
@@ -80,6 +81,7 @@
 			files = (
 				D4BB9C9523A4E3D4009C5573 /* Signals in Frameworks */,
 				D4BB9C9223A4E39C009C5573 /* Alamofire in Frameworks */,
+				D422761023A8BBF700DDC49F /* AlamofireImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +247,7 @@
 			packageProductDependencies = (
 				D4BB9C9123A4E39C009C5573 /* Alamofire */,
 				D4BB9C9423A4E3D4009C5573 /* Signals */,
+				D422760F23A8BBF700DDC49F /* AlamofireImage */,
 			);
 			productName = MyBookshelf;
 			productReference = D4BD673423A4D4D4009A7CBB /* My Bookshelf.app */;
@@ -321,6 +324,7 @@
 			packageReferences = (
 				D4BB9C9023A4E39C009C5573 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D4BB9C9323A4E3D4009C5573 /* XCRemoteSwiftPackageReference "Signals" */,
+				D422760E23A8BBF700DDC49F /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 			);
 			productRefGroup = D4BD673523A4D4D4009A7CBB /* Products */;
 			projectDirPath = "";
@@ -710,6 +714,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D422760E23A8BBF700DDC49F /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage";
+			requirement = {
+				kind = exactVersion;
+				version = 3.6.0;
+			};
+		};
 		D4BB9C9023A4E39C009C5573 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -729,6 +741,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D422760F23A8BBF700DDC49F /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D422760E23A8BBF700DDC49F /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
 		D4BB9C9123A4E39C009C5573 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D4BB9C9023A4E39C009C5573 /* XCRemoteSwiftPackageReference "Alamofire" */;

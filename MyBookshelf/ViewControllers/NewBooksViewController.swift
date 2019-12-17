@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class NewBooksViewController: UIViewController {
-    private struct Constants {
-        static let bookCollectionViewCellIdentifier = "BookCollectionViewCell"
+    private struct Constant {
+        static let bookCollectionViewCellIdentifier = "BookCollectionCellIdentifier"
     }
     
     private var itemsPerRow: CGFloat {
-        return self.isCompact() ? 2 : 5
+        return self.isCompact() ? 1 : 4
     }
     private let sectionInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
     
@@ -50,7 +52,8 @@ class NewBooksViewController: UIViewController {
     }
     
     func setupSubscriptions() {
-        viewModel.inProgress.subscribePast(with: self) { (inProgress) in
+        viewModel.inProgress.subscribePast(with: self) { [weak self] inProgress in
+            guard let self = self else { return }
             print(inProgress)
             if inProgress {
                 self.loadingIndicatorView.isLoading = true
@@ -58,24 +61,56 @@ class NewBooksViewController: UIViewController {
                 self.loadingIndicatorView.isLoading = false
             }
         }
+        
+        viewModel.books.subscribe(with: self) { [weak self] (books, error) in
+            guard let self = self else { return }
+            if let error = error {
+                print ("error fetching data: \(error)")
+                return
+            }
+            
+            self.collectionView.reloadData()
+        }
     }
     
     func setupCollectionView() {
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
+//        self.collectionView.dataSource = self
+//        self.collectionView.delegate = self
         
-        self.collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: Constants.bookCollectionViewCellIdentifier)
+        let nib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
+        self.collectionView.register(nib, forCellWithReuseIdentifier: Constant.bookCollectionViewCellIdentifier)
+//        self.collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: Constant.bookCollectionViewCellIdentifier)
     }
 }
 
 extension NewBooksViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        return self.viewModel.books.lastDataFired?.data.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.bookCollectionViewCellIdentifier, for: indexPath)
-//        cell.backgroundColor = .black
+        guard let data = self.viewModel.books.lastDataFired?.data[indexPath.row], let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.bookCollectionViewCellIdentifier, for: indexPath) as? BookCollectionViewCell else {
+            print("error setting cell")
+            return BookCollectionViewCell()
+        }
+        
+        cell.costLabel.text = data.price
+        cell.descriptionLabel.text = data.subTitle
+        cell.titleLabel.text = data.title
+        cell.isbnLabel.text = data.isbnNumber
+        Alamofire.request(data.imageUrl).responseImage { response in
+            if let error = response.error {
+                print(error)
+            }
+            
+            guard let image = response.result.value else {
+                print("unable to load image")
+                return
+            }
+            
+            cell.image.image = image
+        }
+        
         return cell
     }
 }

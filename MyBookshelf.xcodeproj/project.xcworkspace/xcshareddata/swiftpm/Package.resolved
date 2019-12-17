@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "AlamofireImage",
+        "repositoryURL": "https://github.com/Alamofire/AlamofireImage",
+        "state": {
+          "branch": null,
+          "revision": "c31e617c582102d4b51c714211071f2260e24fdd",
+          "version": "3.6.0"
+        }
+      },
+      {
         "package": "Signals",
         "repositoryURL": "https://github.com/artman/Signals",
         "state": {
