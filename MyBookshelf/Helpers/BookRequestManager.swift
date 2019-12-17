@@ -16,14 +16,14 @@ public enum BookRequestManager: URLRequestConvertible {
     }
     
     case newBooks
-    case search(query: String, page: String)
-    case bookDetails(String)
+    case search(_ query: String, _ page: Int)
+    case bookDetails(_ isbn: String)
     
     var endPoint: String {
         switch self {
         case .newBooks: return "/new"
-        case .search: return "/search/{query}/{page}"
-        case .bookDetails: return "/books/{isbn13}"
+        case .search(let query, let page): return "/search/\(query)/\(page)"
+        case .bookDetails(let isbn): return "/books/\(isbn)"
         }
     }
     

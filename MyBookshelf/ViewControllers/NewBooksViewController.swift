@@ -54,7 +54,7 @@ class NewBooksViewController: UIViewController {
     func setupSubscriptions() {
         viewModel.inProgress.subscribePast(with: self) { [weak self] inProgress in
             guard let self = self else { return }
-            print(inProgress)
+            print("EventFired: inProgress, status: \(inProgress)")
             if inProgress {
                 self.loadingIndicatorView.isLoading = true
             } else {
