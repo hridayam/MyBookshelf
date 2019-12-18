@@ -50,8 +50,8 @@ class BookDetailsViewController: UIViewController {
         self.setupLoadingIndicatorView()
     }
     
-    func setupSubscriptions() {
-        
+    override func viewDidLayoutSubviews() {
+        (self.view as? UIScrollView)?.contentSize = self.bookDetailsView.frame.size
     }
         
     func setupLoadingIndicatorView() {

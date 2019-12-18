@@ -17,7 +17,7 @@ class NewBooksViewController: UIViewController {
     }
     
     private var itemsPerRow: CGFloat {
-        return self.isCompact() ? 1 : 4
+        return self.isCompact() ? 2 : 4
     }
     private let sectionInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
     
@@ -91,23 +91,7 @@ extension NewBooksViewController: UICollectionViewDataSource {
             return BookCollectionViewCell()
         }
         
-        cell.costLabel.text = data.price
-        cell.descriptionLabel.text = data.subTitle
-        cell.titleLabel.text = data.title
-        cell.isbnLabel.text = data.isbnNumber
-        cell.image.loadImage(url: data.imageUrl)
-//        Alamofire.request(data.imageUrl).responseImage { response in
-//            if let error = response.error {
-//                print(error)
-//            }
-//            
-//            guard let image = response.result.value else {
-//                print("unable to load image")
-//                return
-//            }
-//            
-//            cell.image.image = image
-//        }
+        cell.setup(book: data)
         
         return cell
     }
@@ -126,7 +110,7 @@ extension NewBooksViewController: UICollectionViewDelegate {
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.prefersLargeTitles = true
         
-        viewController.navigationItem.title = "Book Details"
+        viewController.navigationItem.title = book.title
         viewController.viewModel = BookDetailsViewModel(isbn: book.isbnNumber)
         
         self.present(navigationController, animated: true, completion: nil)
@@ -137,7 +121,7 @@ extension NewBooksViewController: UICollectionViewDelegate {
 extension NewBooksViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = self.sectionInsets.left * (self.itemsPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
+        let availableWidth = self.view.frame.width - paddingSpace
         let widthPerItem = availableWidth / self.itemsPerRow
         
         return CGSize(width: widthPerItem, height: widthPerItem * 1.2)

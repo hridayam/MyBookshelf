@@ -17,8 +17,14 @@ class BookCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        
     }
 
+    func setup(book: Book) {
+        self.costLabel.text = book.price
+        self.descriptionLabel.text = book.subTitle
+        self.titleLabel.text = book.title
+        self.isbnLabel.text = book.isbnNumber
+        self.image.loadImage(url: book.imageUrl)
+        self.layoutIfNeeded()
+    }
 }
