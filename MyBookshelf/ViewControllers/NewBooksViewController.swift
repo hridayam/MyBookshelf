@@ -117,7 +117,11 @@ extension NewBooksViewController: UICollectionViewDelegate {
         print(indexPath.row)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let viewController = storyboard.instantiateViewController(identifier: Constant.bookDetailsViewContollerStoryboardId) as? BookDetailsViewController {
-            self.navigationController?.pushViewController(viewController, animated: true)
+            let navigationController = UINavigationController(rootViewController: viewController)
+            navigationController.title = "Book Title"
+            navigationController.navigationBar.backgroundColor = .purple
+            self.present(UINavigationController(rootViewController: viewController), animated: true, completion: nil)
+//            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
 }
