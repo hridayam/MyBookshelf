@@ -13,6 +13,7 @@ import AlamofireImage
 class NewBooksViewController: UIViewController {
     private struct Constant {
         static let bookCollectionViewCellIdentifier = "BookCollectionCellIdentifier"
+        static let bookDetailsViewContollerStoryboardId = "BookDetailsViewController"
     }
     
     private var itemsPerRow: CGFloat {
@@ -74,12 +75,8 @@ class NewBooksViewController: UIViewController {
     }
     
     func setupCollectionView() {
-//        self.collectionView.dataSource = self
-//        self.collectionView.delegate = self
-        
         let nib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: Constant.bookCollectionViewCellIdentifier)
-//        self.collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: Constant.bookCollectionViewCellIdentifier)
     }
 }
 
@@ -118,6 +115,10 @@ extension NewBooksViewController: UICollectionViewDataSource {
 extension NewBooksViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.row)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let viewController = storyboard.instantiateViewController(identifier: Constant.bookDetailsViewContollerStoryboardId) as? BookDetailsViewController {
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 }
 

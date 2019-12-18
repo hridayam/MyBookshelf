@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewBooks: Codable {
+struct NewBooks: Decodable {
     var books: [Book]
     var error: String
     var total: String
