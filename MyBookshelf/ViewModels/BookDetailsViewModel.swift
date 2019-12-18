@@ -13,7 +13,7 @@ import Signals
 import Alamofire
 
 class BookDetailsViewModel {
-    let book = Signal<(data: Book?, error: Error?)>(retainLastData: true)
+    let book = Signal<(data: BookDetails?, error: Error?)>(retainLastData: true)
     let inProgress: Signal<Bool> = Signal<Bool>(retainLastData: true)
     
     init(isbn: String) {
@@ -32,7 +32,7 @@ class BookDetailsViewModel {
                 return
             }
             do {
-                let book: Book = try JSONDecoder().decode(Book.self, from: data)
+                let book: BookDetails = try JSONDecoder().decode(BookDetails.self, from: data)
                 self.book.fire((book, nil))
             } catch {
                 self.book.fire((data: nil, error: error))

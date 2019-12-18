@@ -9,23 +9,59 @@
 import UIKit
 
 class BookDetailsViewController: UIViewController {
+    
+    var viewModel: BookDetailsViewModel? {
+        didSet {
+            self.viewModel?.inProgress.subscribePast(with: self) { [weak self] inProgress in
+                guard let self = self else { return }
+                print("EventFired: inProgress, status: \(inProgress)")
+                if inProgress {
+                    self.loadingIndicatorView.isLoading = true
+                } else {
+                    self.loadingIndicatorView.isLoading = false
+                }
+            }
+            
+            self.viewModel?.book.subscribe(with: self) { [weak self] (book, error) in
+                guard let self = self else { return }
+                if let error = error {
+                    print ("error fetching data: \(error)")
+                    return
+                }
+                
+                self.bookDetailsView.setupView(book: book)
+            }
+        }
+    }
+    
     @IBOutlet weak var bookDetailsView: BookDetailsView!
+    lazy var loadingIndicatorView: LoadingIndicatorView = {
+        let view = LoadingIndicatorView()
+        
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.setupLoadingIndicatorView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setupSubscriptions() {
+        
     }
-    */
+        
+    func setupLoadingIndicatorView() {
+        self.bookDetailsView.addSubview(self.loadingIndicatorView)
+        NSLayoutConstraint.activate([
+            self.loadingIndicatorView.leadingAnchor.constraint(equalTo: self.bookDetailsView.leadingAnchor),
+            self.loadingIndicatorView.trailingAnchor.constraint(equalTo: self.bookDetailsView.trailingAnchor),
+            self.loadingIndicatorView.topAnchor.constraint(equalTo: self.bookDetailsView.topAnchor),
+            self.loadingIndicatorView.bottomAnchor.constraint(equalTo: self.bookDetailsView.bottomAnchor)
+        ])
+    }
 
 }

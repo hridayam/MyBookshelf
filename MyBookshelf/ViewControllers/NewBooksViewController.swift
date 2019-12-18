@@ -53,7 +53,7 @@ class NewBooksViewController: UIViewController {
     }
     
     func setupSubscriptions() {
-        viewModel.inProgress.subscribePast(with: self) { [weak self] inProgress in
+        self.viewModel.inProgress.subscribePast(with: self) { [weak self] inProgress in
             guard let self = self else { return }
             print("EventFired: inProgress, status: \(inProgress)")
             if inProgress {
@@ -63,7 +63,7 @@ class NewBooksViewController: UIViewController {
             }
         }
         
-        viewModel.books.subscribe(with: self) { [weak self] (books, error) in
+        self.viewModel.books.subscribe(with: self) { [weak self] (books, error) in
             guard let self = self else { return }
             if let error = error {
                 print ("error fetching data: \(error)")
@@ -95,18 +95,19 @@ extension NewBooksViewController: UICollectionViewDataSource {
         cell.descriptionLabel.text = data.subTitle
         cell.titleLabel.text = data.title
         cell.isbnLabel.text = data.isbnNumber
-        Alamofire.request(data.imageUrl).responseImage { response in
-            if let error = response.error {
-                print(error)
-            }
-            
-            guard let image = response.result.value else {
-                print("unable to load image")
-                return
-            }
-            
-            cell.image.image = image
-        }
+        cell.image.loadImage(url: data.imageUrl)
+//        Alamofire.request(data.imageUrl).responseImage { response in
+//            if let error = response.error {
+//                print(error)
+//            }
+//            
+//            guard let image = response.result.value else {
+//                print("unable to load image")
+//                return
+//            }
+//            
+//            cell.image.image = image
+//        }
         
         return cell
     }
@@ -116,13 +117,20 @@ extension NewBooksViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.row)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let viewController = storyboard.instantiateViewController(identifier: Constant.bookDetailsViewContollerStoryboardId) as? BookDetailsViewController {
-            let navigationController = UINavigationController(rootViewController: viewController)
-            navigationController.title = "Book Title"
-            navigationController.navigationBar.backgroundColor = .purple
-            self.present(UINavigationController(rootViewController: viewController), animated: true, completion: nil)
-//            self.navigationController?.pushViewController(viewController, animated: true)
+        
+        guard let book = self.viewModel.books.lastDataFired?.data[indexPath.row], let viewController = storyboard.instantiateViewController(identifier: Constant.bookDetailsViewContollerStoryboardId) as? BookDetailsViewController else {
+            print ("either book is nil or unable to setup viewController")
+            return
         }
+        
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.navigationBar.prefersLargeTitles = true
+        
+        viewController.navigationItem.title = "Book Details"
+        viewController.viewModel = BookDetailsViewModel(isbn: book.isbnNumber)
+        
+        self.present(navigationController, animated: true, completion: nil)
+//            self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

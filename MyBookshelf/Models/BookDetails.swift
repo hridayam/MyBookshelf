@@ -23,7 +23,7 @@ struct BookDetails: Decodable {
     let price: String
     let imageUrl: URL
     let bookUrl: URL
-    let pdf: Chapters
+    let pdf: Chapters?
     
     enum CodingKeys: String, CodingKey {
         case error
@@ -36,7 +36,7 @@ struct BookDetails: Decodable {
         case pages
         case year
         case rating
-        case description
+        case description = "desc"
         case price
         case imageUrl = "image"
         case bookUrl = "url"
@@ -60,6 +60,6 @@ struct BookDetails: Decodable {
         self.price = try values.decode(String.self, forKey: .price)
         self.imageUrl = try values.decode(URL.self, forKey: .imageUrl)
         self.bookUrl = try values.decode(URL.self, forKey: .bookUrl)
-        self.pdf = try values.decode(Chapters.self, forKey: .pdf)
+        self.pdf = try values.decodeIfPresent(Chapters.self, forKey: .pdf)
     }
 }
