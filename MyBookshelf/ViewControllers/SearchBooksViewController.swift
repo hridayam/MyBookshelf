@@ -95,12 +95,16 @@ extension SearchBooksViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let data = self.viewModel.books.lastDataFired?.data[indexPath.row], let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.bookCollectionViewCellIdentifier, for: indexPath) as? BookCollectionViewCell else {
+        guard let books = self.viewModel.books.lastDataFired?.data, let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.bookCollectionViewCellIdentifier, for: indexPath) as? BookCollectionViewCell else {
             print("error setting cell")
             return BookCollectionViewCell()
         }
         
-        cell.setup(book: data)
+        cell.setup(book: books[indexPath.row])
+        
+        if ((books.count - indexPath.row) == 5) && self.viewModel.canGetMorePages {
+            self.viewModel.getNextPage()
+        }
         
         return cell
     }
@@ -123,7 +127,6 @@ extension SearchBooksViewController: UICollectionViewDelegate {
         viewController.viewModel = BookDetailsViewModel(isbn: book.isbnNumber)
         
         self.present(navigationController, animated: true, completion: nil)
-//            self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
@@ -147,7 +150,7 @@ extension SearchBooksViewController: UICollectionViewDelegateFlowLayout {
 
 extension SearchBooksViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        guard let query = searchBar.text else { return }
+        guard let query = searchBar.text, query.count > 0 else { return }
         print("searched for: \(query)")
         self.viewModel.searchBook(query: query)
         self.searchController.dismiss(animated: true, completion: nil)

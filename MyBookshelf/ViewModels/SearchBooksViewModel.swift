@@ -15,6 +15,11 @@ class SearchBooksViewModel {
     let books = Signal<(data: [Book], error: Error?)>(retainLastData: true)
     let inProgress: Signal<Bool> = Signal<Bool>(retainLastData: true)
     
+    var canGetMorePages: Bool {
+        guard let books = self.books.lastDataFired?.data else { return true }
+        return books.count != self.total
+    }
+    private var total: Int = 0
     private var query = ("", 1)
     
     func searchBook(query: String) {
@@ -30,8 +35,9 @@ class SearchBooksViewModel {
             }
             do {
                 let newBooks: NewBooks = try JSONDecoder().decode(NewBooks.self, from: data)
+                self.total = Int(newBooks.total) ?? 0
                 self.books.fire((newBooks.books, nil))
-                self.query.1 = (Int(newBooks.page ?? "0") ?? 0) + 1
+                self.query = (query, (Int(newBooks.page ?? "0") ?? 0) + 1)
             } catch {
                 print(error)
             }
@@ -42,7 +48,7 @@ class SearchBooksViewModel {
         Alamofire.request(BookRequestManager.search(self.query.0, self.query.1)).responseJSON { [weak self] response in
             guard let self = self else { return }
 
-            print("Endpoint: Book:\n  \(response)")
+            print("Endpoint: Book:\n  \(response), query: \(self.query)")
             self.inProgress.fire(false)
             guard let data = response.data else {
                 print("no response from server")
