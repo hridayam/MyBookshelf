@@ -121,11 +121,7 @@ extension SearchBooksViewController: UICollectionViewDelegate {
         }
         
         let navigationController = UINavigationController(rootViewController: viewController)
-        navigationController.navigationBar.prefersLargeTitles = true
-        
-        viewController.navigationItem.title = book.title
         viewController.viewModel = BookDetailsViewModel(isbn: book.isbnNumber)
-        
         self.present(navigationController, animated: true, completion: nil)
     }
 }

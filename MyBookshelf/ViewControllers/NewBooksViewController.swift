@@ -108,13 +108,8 @@ extension NewBooksViewController: UICollectionViewDelegate {
         }
         
         let navigationController = UINavigationController(rootViewController: viewController)
-        
-        viewController.navigationItem.title = book.title
-        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: viewController, action: #selector(viewController.rightBarButtonAction))
         viewController.viewModel = BookDetailsViewModel(isbn: book.isbnNumber)
-        
         self.present(navigationController, animated: true, completion: nil)
-//            self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

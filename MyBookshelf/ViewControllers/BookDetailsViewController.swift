@@ -23,28 +23,24 @@ class BookDetailsViewController: UIViewController {
             }
             
             self.viewModel?.book.subscribe(with: self) { [weak self] (book, error) in
-                guard let self = self else { return }
+                guard let self = self, let book = book else { return }
                 if let error = error {
                     print ("error fetching data: \(error)")
                     return
                 }
                 
+                self.navigationItem.title = book.title
                 self.bookDetailsView.setupView(book: book)
-                
                 self.bookDetailsView.openWebsite = {
-                    guard let book = book else { return }
-                    
                     UIApplication.shared.open(book.bookUrl, options: [:], completionHandler: nil)
                 }
-                
                 self.bookDetailsView.openChapter2 = {
-                    guard let book = book, let pdf = book.pdf else { return }
+                    guard let pdf = book.pdf else { return }
                     
                     UIApplication.shared.open(pdf.chapter2, options: [:], completionHandler: nil)
                 }
-                
                 self.bookDetailsView.openChapter5 = {
-                    guard let book = book, let pdf = book.pdf else { return }
+                    guard let pdf = book.pdf else { return }
                     
                     UIApplication.shared.open(pdf.chapter5, options: [:], completionHandler: nil)
                 }
@@ -66,6 +62,11 @@ class BookDetailsViewController: UIViewController {
         super.viewDidLoad()
 
         self.setupLoadingIndicatorView()
+        self.setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(self.rightBarButtonAction))
     }
         
     func setupLoadingIndicatorView() {
@@ -80,6 +81,5 @@ class BookDetailsViewController: UIViewController {
     
     @objc func rightBarButtonAction() {
         self.dismiss(animated: true, completion: nil)
-        print("rightBarButton Clicked")
     }
 }
