@@ -30,6 +30,24 @@ class BookDetailsViewController: UIViewController {
                 }
                 
                 self.bookDetailsView.setupView(book: book)
+                
+                self.bookDetailsView.openWebsite = {
+                    guard let book = book else { return }
+                    
+                    UIApplication.shared.open(book.bookUrl, options: [:], completionHandler: nil)
+                }
+                
+                self.bookDetailsView.openChapter2 = {
+                    guard let book = book, let pdf = book.pdf else { return }
+                    
+                    UIApplication.shared.open(pdf.chapter2, options: [:], completionHandler: nil)
+                }
+                
+                self.bookDetailsView.openChapter5 = {
+                    guard let book = book, let pdf = book.pdf else { return }
+                    
+                    UIApplication.shared.open(pdf.chapter5, options: [:], completionHandler: nil)
+                }
             }
         }
     }
@@ -49,19 +67,19 @@ class BookDetailsViewController: UIViewController {
 
         self.setupLoadingIndicatorView()
     }
-    
-    override func viewDidLayoutSubviews() {
-        (self.view as? UIScrollView)?.contentSize = self.bookDetailsView.frame.size
-    }
         
     func setupLoadingIndicatorView() {
-        self.bookDetailsView.addSubview(self.loadingIndicatorView)
+        self.view.addSubview(self.loadingIndicatorView)
         NSLayoutConstraint.activate([
-            self.loadingIndicatorView.leadingAnchor.constraint(equalTo: self.bookDetailsView.leadingAnchor),
-            self.loadingIndicatorView.trailingAnchor.constraint(equalTo: self.bookDetailsView.trailingAnchor),
-            self.loadingIndicatorView.topAnchor.constraint(equalTo: self.bookDetailsView.topAnchor),
-            self.loadingIndicatorView.bottomAnchor.constraint(equalTo: self.bookDetailsView.bottomAnchor)
+            self.loadingIndicatorView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.loadingIndicatorView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.loadingIndicatorView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.loadingIndicatorView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
-
+    
+    @objc func rightBarButtonAction() {
+        self.dismiss(animated: true, completion: nil)
+        print("rightBarButton Clicked")
+    }
 }
