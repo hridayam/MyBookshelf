@@ -15,10 +15,49 @@
                     <view key="view" contentMode="scaleToFill" id="RJD-aZ-Fsw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSH-kq-rRg">
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kca-lo-YTF">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="673"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BC7-Tn-rWE">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Za0-dS-CsC" id="Vbz-Zj-llU"/>
+                                            <outlet property="delegate" destination="Za0-dS-CsC" id="yMv-85-p7d"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Kca-lo-YTF" secondAttribute="trailing" id="AEK-sw-wHf"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kca-lo-YTF" secondAttribute="bottom" id="GtV-Pi-pxq"/>
+                                    <constraint firstItem="Kca-lo-YTF" firstAttribute="leading" secondItem="NSH-kq-rRg" secondAttribute="leading" id="g57-q8-n3a"/>
+                                    <constraint firstItem="Kca-lo-YTF" firstAttribute="top" secondItem="NSH-kq-rRg" secondAttribute="top" id="ntZ-mZ-JAr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="NSH-kq-rRg" firstAttribute="leading" secondItem="TbY-xQ-tnM" secondAttribute="leading" id="0Ds-2f-1f0"/>
+                            <constraint firstItem="TbY-xQ-tnM" firstAttribute="trailing" secondItem="NSH-kq-rRg" secondAttribute="trailing" id="FnQ-Ap-E3o"/>
+                            <constraint firstItem="NSH-kq-rRg" firstAttribute="top" secondItem="TbY-xQ-tnM" secondAttribute="top" id="Nuj-99-saA"/>
+                            <constraint firstItem="TbY-xQ-tnM" firstAttribute="bottom" secondItem="NSH-kq-rRg" secondAttribute="bottom" id="tNz-7h-u5c"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="TbY-xQ-tnM"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="0d6-gv-9gu"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Kca-lo-YTF" id="HQe-yF-O3K"/>
+                        <outlet property="contentView" destination="NSH-kq-rRg" id="roH-qt-sgv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yu6-5N-u6J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

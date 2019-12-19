@@ -12,4 +12,5 @@ struct NewBooks: Decodable {
     var books: [Book]
     var error: String
     var total: String
+    var page: String?
 }
