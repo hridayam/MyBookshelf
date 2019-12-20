@@ -49,7 +49,7 @@ class BookDetailsViewModelTests: XCTestCase {
         let inProgressExpectation = expectation(description: "in progress expectation")
         let dataExpectation = expectation(description: "book details expectatation")
         
-        self.viewModel?.inProgress.subscribe(with: self, callback: { bool in
+        self.viewModel.inProgress.subscribe(with: self, callback: { bool in
             XCTAssertEqual(bool, false)
             inProgressExpectation.fulfill()
         })

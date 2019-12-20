@@ -20,7 +20,7 @@ class SearchBooksViewModel {
         return books.count != self.total
     }
     private var total: Int = 0
-    private var query = ("", 1)
+    var query = ("", 1)
     
     func searchBook(query: String) {
         self.inProgress.fire(true)
