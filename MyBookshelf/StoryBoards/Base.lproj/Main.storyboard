@@ -11,7 +11,7 @@
         <!--Search View Controller-->
         <scene sceneID="MhD-3d-Ga7">
             <objects>
-                <viewController id="Za0-dS-CsC" userLabel="Search View Controller" customClass="SearchBooksViewController" customModule="My_Bookshelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchBooksViewController" id="Za0-dS-CsC" userLabel="Search View Controller" customClass="SearchBooksViewController" customModule="MyBookshelf" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RJD-aZ-Fsw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,7 +100,7 @@
         <!--New Books View Controller-->
         <scene sceneID="fcW-88-TOj">
             <objects>
-                <viewController id="T7P-qC-0fb" userLabel="New Books View Controller" customClass="NewBooksViewController" customModule="My_Bookshelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="T7P-qC-0fb" userLabel="New Books View Controller" customClass="NewBooksViewController" customModule="MyBookshelf" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AYO-aY-0oL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,7 +155,7 @@
         <!--Book Details View Controller-->
         <scene sceneID="xsq-jV-JZc">
             <objects>
-                <viewController storyboardIdentifier="BookDetailsViewController" id="iTF-tr-y6S" customClass="BookDetailsViewController" customModule="My_Bookshelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BookDetailsViewController" id="iTF-tr-y6S" customClass="BookDetailsViewController" customModule="MyBookshelf" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0OV-Ux-y7z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -163,7 +163,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rjp-dJ-Gqf">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPt-ID-jr5" customClass="BookDetailsView" customModule="My_Bookshelf" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPt-ID-jr5" customClass="BookDetailsView" customModule="MyBookshelf" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pqy-Qq-0JT">

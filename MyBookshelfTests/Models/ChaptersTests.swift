@@ -28,8 +28,8 @@ class ChaptersTests: XCTestCase {
     }
     
     override func tearDown() {
-        super.tearDown()
         self.pdf = nil
+        super.tearDown()
     }
     
     func testDecodeChapters() {

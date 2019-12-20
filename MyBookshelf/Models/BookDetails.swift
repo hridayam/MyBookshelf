@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BookDetails: Decodable {
+struct BookDetails: Decodable, Equatable {
     let error: String
     let title: String
     let subtitle: String

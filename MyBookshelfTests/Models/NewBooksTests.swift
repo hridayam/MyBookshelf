@@ -28,8 +28,8 @@ class NewBooksTests: XCTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         self.newBooks = nil
+        super.tearDown()
     }
 
     func testDecodeNewBooks() {

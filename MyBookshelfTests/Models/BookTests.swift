@@ -28,8 +28,8 @@ class BookTests: XCTestCase {
     }
     
     override func tearDown() {
-        super.tearDown()
         self.book = nil
+        super.tearDown()
     }
     
     func testDecodeBook() {
@@ -56,5 +56,4 @@ class BookTests: XCTestCase {
         "url": "https://itbook.store/books/9781491954249"
     }
     """
-
 }
