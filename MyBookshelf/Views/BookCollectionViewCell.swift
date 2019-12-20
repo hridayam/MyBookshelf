@@ -14,10 +14,6 @@ class BookCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!
     @IBOutlet weak var isbnLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 
     func setup(book: Book) {
         self.costLabel.text = book.price
@@ -26,5 +22,14 @@ class BookCollectionViewCell: UICollectionViewCell {
         self.isbnLabel.text = book.isbnNumber
         self.image.loadImage(url: book.imageUrl)
         self.layoutIfNeeded()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.image.image = #imageLiteral(resourceName: "defaultImage")
+        self.titleLabel.text = ""
+        self.descriptionLabel.text = ""
+        self.costLabel.text = ""
+        self.isbnLabel.text = ""
     }
 }

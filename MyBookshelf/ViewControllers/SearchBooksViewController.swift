@@ -23,7 +23,7 @@ class SearchBooksViewController: UIViewController {
     }
     
     private var itemsPerRow: CGFloat {
-        return self.isCompact() ? 2 : 4
+        return self.isCompact() ? 2 : 3
     }
     private let sectionInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
     
@@ -105,6 +105,9 @@ extension SearchBooksViewController: UICollectionViewDataSource {
         if ((books.count - indexPath.row) == 5) && self.viewModel.canGetMorePages {
             self.viewModel.getNextPage()
         }
+        
+        cell.layer.shouldRasterize = true
+        cell.layer.rasterizationScale = UIScreen.main.scale
         
         return cell
     }

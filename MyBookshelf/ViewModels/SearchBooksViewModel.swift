@@ -17,7 +17,7 @@ class SearchBooksViewModel {
     
     var canGetMorePages: Bool {
         guard let books = self.books.lastDataFired?.data else { return true }
-        return books.count != self.total
+        return books.count < self.total
     }
     private var total: Int = 0
     var query = ("", 1)
