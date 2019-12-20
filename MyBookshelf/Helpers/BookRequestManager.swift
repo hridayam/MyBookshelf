@@ -32,6 +32,7 @@ public enum BookRequestManager: URLRequestConvertible {
         
         var request = URLRequest(url: url.appendingPathComponent(endPoint))
         request.httpMethod = Constants.method.rawValue
+        request.timeoutInterval = TimeInterval(30)
         
         return try URLEncoding.default.encode(request, with: nil)
     }

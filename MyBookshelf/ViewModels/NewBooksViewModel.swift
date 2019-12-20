@@ -33,22 +33,5 @@ class NewBooksViewModel {
                 print(error)
             }
         }
-        
-//        Alamofire.request(BookRequestManager.search("hello", 1)).responseJSON { [weak self] response in
-//            guard let self = self else { return }
-//
-//            print("Endpoint: Book:\n  \(response)")
-//            self.inProgress.fire(false)
-//            guard let data = response.data else {
-//                print("no response from server")
-//                return
-//            }
-//            do {
-//                let newBooks: NewBooks = try JSONDecoder().decode(NewBooks.self, from: data)
-//                self.books.fire((newBooks.books, nil))
-//            } catch {
-//                print(error)
-//            }
-//        }
     }
 }

@@ -20,7 +20,7 @@ import Foundation
  - "url": "https://itbook.store/books/9780321741769"
  */
 
-struct Book: Codable {
+struct Book: Decodable, Equatable {
     let title: String
     let subTitle: String
     let isbnNumber: String
@@ -46,16 +46,5 @@ struct Book: Codable {
         self.price = try values.decode(String.self, forKey: .price)
         self.imageUrl = try values.decode(URL.self, forKey: .imageUrl)
         self.url = try values.decode(URL.self, forKey: .url)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(title, forKey: .title)
-        try container.encode(subTitle, forKey: .subTitle)
-        try container.encode(isbnNumber, forKey: .isbnNumber)
-        try container.encode(price, forKey: .price)
-        try container.encode(imageUrl, forKey: .imageUrl)
-        try container.encode(url, forKey: .url)
     }
 }

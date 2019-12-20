@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Chapters: Decodable {
+struct Chapters: Decodable, Equatable {
     let chapter2: URL
     let chapter5: URL
     
